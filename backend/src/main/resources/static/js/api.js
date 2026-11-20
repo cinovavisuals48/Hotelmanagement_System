@@ -2,11 +2,11 @@
    Shared helpers: REST calls, formatting, toasts, modals
    ========================================================= */
 
-// When the pages are served by Spring Boot the API is on the same origin.
-// When opened from another dev server (e.g. Live Server on :5500) talk to localhost:8080.
-const API_BASE = (location.protocol.startsWith('http') && location.port === '8080')
-    ? '/api'
-    : 'http://localhost:8080/api';
+// When the pages are served by Spring Boot the API is on the same origin (whatever the port).
+// When opened as a file or from VS Code Live Server (:5500/:5501), talk to localhost:8080.
+const API_BASE = (location.protocol === 'file:' || ['5500', '5501'].includes(location.port))
+    ? 'http://localhost:8080/api'
+    : '/api';
 
 /** Calls the REST API and returns parsed JSON (or null for 204). Throws an Error with the server's message. */
 async function api(path, { method = 'GET', body } = {}) {

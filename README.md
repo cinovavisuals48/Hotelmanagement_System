@@ -36,9 +36,20 @@ The front end lives in `backend/src/main/resources/static`, so Spring Boot serve
 ## How to run
 
 ### 1. Prerequisites
-- JDK 17 or newer
-- Maven 3.8+ (or open the `backend` folder in IntelliJ IDEA / Eclipse / VS Code)
-- MySQL Server 8 and MySQL Workbench
+- JDK 17 or newer (check with `java -version`)
+- MySQL Server 8 running, plus MySQL Workbench
+- Maven is **not** required: the project includes the Maven Wrapper (`mvnw` / `mvnw.cmd`), which downloads Maven on first use.
+
+Get the code:
+```bash
+git clone https://github.com/cinovavisuals48/Hotelmanagement_System.git
+```
+```bash
+cd Hotelmanagement_System
+```
+```bash
+git checkout claude/clever-brown-a9bi48
+```
 
 ### 2. Create the database (MySQL Workbench)
 1. Open MySQL Workbench and connect to your local server.
@@ -63,11 +74,27 @@ export DB_PASSWORD=your_mysql_password
 cd backend
 ```
 
+Windows (Command Prompt or PowerShell):
 ```bash
-mvn spring-boot:run
+.\mvnw.cmd spring-boot:run
 ```
 
-Then open **http://localhost:8080** in your browser.
+macOS / Linux:
+```bash
+./mvnw spring-boot:run
+```
+
+Wait for the line `Started HotelManagementApplication in ... seconds`, keep that window open, then open **http://localhost:8080** in your browser.
+
+### Troubleshooting
+| Problem | Fix |
+|---------|-----|
+| Browser shows `ERR_CONNECTION_REFUSED` on localhost:8080 | The app isn't running on your computer. Start it (step 4) and wait for `Started HotelManagementApplication`. Closing the terminal stops the app. |
+| `Access denied for user 'root'@'localhost'` | The MySQL password in `application.properties` (or `DB_PASSWORD`) doesn't match your MySQL server's password. |
+| `Communications link failure` | MySQL Server isn't running. Start it from Windows Services (`MySQL80`) or MySQL Workbench. |
+| `Port 8080 was already in use` | Another program uses port 8080. Run with `.\mvnw.cmd spring-boot:run -Dspring-boot.run.arguments=--server.port=8081` and open http://localhost:8081. |
+| `JAVA_HOME not found` / `java is not recognized` | Install JDK 17+ and make sure `java -version` works in a new terminal. |
+| IntelliJ IDEA | Open the `backend` folder, wait for Maven import, then run `HotelManagementApplication.java`. |
 
 ## Using the app
 
