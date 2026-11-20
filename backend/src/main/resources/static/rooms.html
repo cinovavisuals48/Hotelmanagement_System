@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms | Grand Stay Hotel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="inner">
+        <a class="brand" href="index.html"><span class="logo">GS</span> Grand Stay Hotel</a>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="book.html">New Booking</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="customers.html">Customers</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="page-header">
+        <div>
+            <h1>Rooms</h1>
+            <p>Add, edit and remove rooms. Rooms under maintenance are never allocated.</p>
+        </div>
+        <button class="btn btn-gold" id="add-btn">+ Add Room</button>
+    </div>
+
+    <section class="card">
+        <div class="toolbar">
+            <input type="search" id="search" placeholder="Search room number or description…">
+            <select id="type-filter">
+                <option value="">All types</option>
+                <option value="SINGLE">Single</option>
+                <option value="DOUBLE">Double</option>
+                <option value="DELUXE">Deluxe</option>
+                <option value="SUITE">Suite</option>
+            </select>
+            <select id="status-filter">
+                <option value="">All statuses</option>
+                <option value="AVAILABLE">Available</option>
+                <option value="OCCUPIED">Occupied</option>
+                <option value="MAINTENANCE">Maintenance</option>
+            </select>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr><th>Room</th><th>Type</th><th>Floor</th><th>Capacity</th><th>Price / night</th><th>Status</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="rooms-body"><tr><td colspan="7" class="empty">Loading…</td></tr></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<div class="modal-backdrop" id="room-modal">
+    <div class="modal">
+        <h3 id="room-modal-title">Add Room</h3>
+        <form id="room-form" novalidate>
+            <input type="hidden" name="id">
+            <div class="form-grid">
+                <div class="field">
+                    <label for="roomNumber">Room number <span class="req">*</span></label>
+                    <input id="roomNumber" name="roomNumber" required maxlength="10">
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="roomType">Type <span class="req">*</span></label>
+                    <select id="roomType" name="roomType" required>
+                        <option value="SINGLE">Single</option>
+                        <option value="DOUBLE">Double</option>
+                        <option value="DELUXE">Deluxe</option>
+                        <option value="SUITE">Suite</option>
+                    </select>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="pricePerNight">Price per night (₹) <span class="req">*</span></label>
+                    <input type="number" id="pricePerNight" name="pricePerNight" min="1" step="0.01" required>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="capacity">Capacity <span class="req">*</span></label>
+                    <input type="number" id="capacity" name="capacity" min="1" max="10" required>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="floor">Floor <span class="req">*</span></label>
+                    <input type="number" id="floor" name="floor" min="0" required>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option value="AVAILABLE">Available</option>
+                        <option value="MAINTENANCE">Maintenance</option>
+                        <option value="OCCUPIED" disabled>Occupied (set by check-in)</option>
+                    </select>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field full">
+                    <label for="description">Description</label>
+                    <input id="description" name="description" maxlength="255">
+                    <div class="error-text"></div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" data-close="room-modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save room</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/rooms.js"></script>
+</body>
+</html>

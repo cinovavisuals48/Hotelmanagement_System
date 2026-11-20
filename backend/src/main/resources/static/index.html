@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Grand Stay Hotel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="inner">
+        <a class="brand" href="index.html"><span class="logo">GS</span> Grand Stay Hotel</a>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="book.html">New Booking</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="customers.html">Customers</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="page-header">
+        <div>
+            <h1>Dashboard</h1>
+            <p id="today-label"></p>
+        </div>
+        <a class="btn btn-gold" href="book.html">+ New Booking</a>
+    </div>
+
+    <section class="stats" id="stats">
+        <div class="stat"><div class="label">Total Rooms</div><div class="value" data-stat="totalRooms">–</div></div>
+        <div class="stat green"><div class="label">Available</div><div class="value" data-stat="availableRooms">–</div></div>
+        <div class="stat blue"><div class="label">Occupied</div><div class="value" data-stat="occupiedRooms">–</div></div>
+        <div class="stat amber"><div class="label">Maintenance</div><div class="value" data-stat="maintenanceRooms">–</div></div>
+        <div class="stat"><div class="label">Customers</div><div class="value" data-stat="totalCustomers">–</div></div>
+        <div class="stat blue"><div class="label">Upcoming Bookings</div><div class="value" data-stat="upcomingBookings">–</div></div>
+        <div class="stat green"><div class="label">Guests In House</div><div class="value" data-stat="checkedInGuests">–</div></div>
+        <div class="stat gold"><div class="label">Revenue</div><div class="value" data-stat="totalRevenue">–</div></div>
+    </section>
+
+    <div class="two-col">
+        <section class="card">
+            <h2>Arriving today <span class="hint" id="arrivals-count"></span></h2>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Guest</th><th>Room</th><th>Nights</th><th></th></tr></thead>
+                    <tbody id="arrivals"><tr><td colspan="4" class="empty">Loading…</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Departing today <span class="hint" id="departures-count"></span></h2>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Guest</th><th>Room</th><th>Amount</th><th></th></tr></thead>
+                    <tbody id="departures"><tr><td colspan="4" class="empty">Loading…</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <section class="card">
+        <h2>Recent bookings</h2>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>#</th><th>Guest</th><th>Room</th><th>Stay</th><th>Total</th><th>Status</th></tr></thead>
+                <tbody id="recent"><tr><td colspan="6" class="empty">Loading…</td></tr></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

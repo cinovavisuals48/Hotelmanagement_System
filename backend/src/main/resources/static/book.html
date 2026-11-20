@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Booking | Grand Stay Hotel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="inner">
+        <a class="brand" href="index.html"><span class="logo">GS</span> Grand Stay Hotel</a>
+        <div class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="book.html">New Booking</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="customers.html">Customers</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="page-header">
+        <div>
+            <h1>New Booking</h1>
+            <p>Enter the stay, pick a room (or let the system allocate one), then the guest's details.</p>
+        </div>
+    </div>
+
+    <!-- Shown after a successful booking -->
+    <section class="card confirmation hidden" id="confirmation"></section>
+
+    <form id="booking-form" novalidate>
+        <section class="card">
+            <h2><span class="step">1</span>Stay details</h2>
+            <div class="form-grid">
+                <div class="field">
+                    <label for="checkInDate">Check-in date <span class="req">*</span></label>
+                    <input type="date" id="checkInDate" name="checkInDate" required>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="checkOutDate">Check-out date <span class="req">*</span></label>
+                    <input type="date" id="checkOutDate" name="checkOutDate" required>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="numberOfGuests">Guests <span class="req">*</span></label>
+                    <input type="number" id="numberOfGuests" name="numberOfGuests" min="1" max="10" value="1" required>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="roomType">Room type</label>
+                    <select id="roomType" name="roomType">
+                        <option value="">Any type</option>
+                        <option value="SINGLE">Single</option>
+                        <option value="DOUBLE">Double</option>
+                        <option value="DELUXE">Deluxe</option>
+                        <option value="SUITE">Suite</option>
+                    </select>
+                    <div class="error-text"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2><span class="step">2</span>Choose a room</h2>
+            <p class="hint" id="rooms-hint">Pick dates to see which rooms are free.</p>
+            <div class="room-grid" id="room-grid"></div>
+        </section>
+
+        <section class="card">
+            <h2><span class="step">3</span>Guest details</h2>
+            <p class="hint">Returning guest? Type their email and their saved details are filled in.</p>
+            <div class="form-grid">
+                <div class="field">
+                    <label for="email">Email <span class="req">*</span></label>
+                    <input type="email" id="email" name="email" required maxlength="100" autocomplete="off">
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="firstName">First name <span class="req">*</span></label>
+                    <input type="text" id="firstName" name="firstName" required maxlength="50">
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="lastName">Last name <span class="req">*</span></label>
+                    <input type="text" id="lastName" name="lastName" required maxlength="50">
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="phone">Phone <span class="req">*</span></label>
+                    <input type="tel" id="phone" name="phone" required maxlength="20" placeholder="+91 98765 43210">
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="idProofType">ID proof type</label>
+                    <select id="idProofType" name="idProofType">
+                        <option value="">Select…</option>
+                        <option>Aadhaar</option>
+                        <option>Passport</option>
+                        <option>Driving Licence</option>
+                        <option>Voter ID</option>
+                        <option>PAN Card</option>
+                    </select>
+                    <div class="error-text"></div>
+                </div>
+                <div class="field">
+                    <label for="idProofNumber">ID proof number</label>
+                    <input type="text" id="idProofNumber" name="idProofNumber" maxlength="50">
+                    <div class="error-text"></div>
+                </div>
+                <div class="field full">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" maxlength="255">
+                    <div class="error-text"></div>
+                </div>
+                <div class="field full">
+                    <label for="specialRequests">Special requests</label>
+                    <textarea id="specialRequests" name="specialRequests" maxlength="500" placeholder="Early check-in, extra bed, airport pickup…"></textarea>
+                    <div class="error-text"></div>
+                </div>
+            </div>
+
+            <div class="summary" id="summary"></div>
+
+            <div class="form-actions">
+                <button type="reset" class="btn btn-outline">Clear</button>
+                <button type="submit" class="btn btn-gold" id="submit-btn">Confirm booking</button>
+            </div>
+        </section>
+    </form>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/book.js"></script>
+</body>
+</html>
